@@ -9,8 +9,10 @@
 #' provided, the folder base paths of the folders is used.
 #' @param path_prefix a prefix for the path variable names.
 #' @param global export path strings as global variables.
-#' @param alternative_domain alternative domain for which a different root path
-#' than supplied by \code{root_folder} should be used.
+#' @param alternative_env_id alternative system environment attribute used to
+#' check for setting an alternative \code{root_folder}.
+#' @param alternative_env_id value of the attribute for which the alternative
+#' \code{root_folder} should be set.
 #' @param alternative_root_folder alternative root folder for alternative domain.
 #'
 #' @return A list containing the project settings.
@@ -27,13 +29,15 @@
 
 createEnvi = function(root_folder = tempdir(), folders = c("data", "data/tmp"),
                       folder_names = NULL, path_prefix = "path_", global = FALSE,
-                      alternative_domain = NULL, alternative_root_folder = NULL){
+                      alternative_env_id = NULL,
+                      alternative_env_value = NULL,
+                      alternative_root_folder = NULL){
 
   # Set root folder or alternative root folder
   root_folder = gsub("\\\\", "/", path.expand(root_folder))
 
-  if(!is.null(alternative_domain)){
-    if(Sys.getenv()["USERDOMAIN"] == alternative_domain){
+  if(!is.null(alternative_env_id)){
+    if(Sys.getenv()[alternative_env_id] == alternative_env_value){
       root_folder = alternative_root_folder
     }
   }

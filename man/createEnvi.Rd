@@ -6,7 +6,8 @@
 \usage{
 createEnvi(root_folder = tempdir(), folders = c("data", "data/tmp"),
   folder_names = NULL, path_prefix = "path_", global = FALSE,
-  alternative_domain = NULL, alternative_root_folder = NULL)
+  alternative_env_id = NULL, alternative_env_value = NULL,
+  alternative_root_folder = NULL)
 }
 \arguments{
 \item{folders}{list of subfolders within the project root folder.}
@@ -18,12 +19,15 @@ provided, the folder base paths of the folders is used.}
 
 \item{global}{export path strings as global variables.}
 
-\item{alternative_domain}{alternative domain for which a different root path
-than supplied by \code{root_folder} should be used.}
+\item{alternative_env_id}{alternative system environment attribute used to
+check for setting an alternative \code{root_folder}.}
 
 \item{alternative_root_folder}{alternative root folder for alternative domain.}
 
 \item{root_folder_folder}{project root_folder folder directory.}
+
+\item{alternative_env_id}{value of the attribute for which the alternative
+\code{root_folder} should be set.}
 }
 \value{
 A list containing the project settings.
