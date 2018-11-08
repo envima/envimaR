@@ -3,7 +3,7 @@
 #' @description Defines folder structures and creates them if necessary, loads
 #' libraries, and sets other project relevant parameters.
 #'
-#' @param root_folder_folder project root_folder folder directory.
+#' @param root_folder project root_folder folder directory.
 #' @param folders list of subfolders within the project root folder.
 #' @param folder_names names of the variables that point to subfolders. If not
 #' provided, the folder base paths of the folders is used.
@@ -61,7 +61,7 @@ createEnvi = function(root_folder = tempdir(), folders = c("data", "data/tmp"),
 
   if(!is.null(path_prefix)) names(folders) = paste(path_prefix, names(folders))
 
-  # Check paths for existance and Create if necessary
+  # Check paths for existance and create if necessary
   for(f in folders){
     if(!file.exists(f)) dir.create(f, recursive = TRUE)
   }
