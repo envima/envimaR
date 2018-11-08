@@ -11,7 +11,7 @@
 #' @param global export path strings as global variables.
 #' @param alternative_env_id alternative system environment attribute used to
 #' check for setting an alternative \code{root_folder}.
-#' @param alternative_env_id value of the attribute for which the alternative
+#' @param alternative_env_value value of the attribute for which the alternative
 #' \code{root_folder} should be set.
 #' @param alternative_root_folder alternative root folder for alternative domain.
 #'
@@ -66,7 +66,7 @@ createEnvi = function(root_folder = tempdir(), folders = c("data", "data/tmp"),
     if(!file.exists(f)) dir.create(f, recursive = TRUE)
   }
 
-  if (global) makeGlobalVariable(names = names(folders), values = folders)
+  if(global) makeGlobalVariable(names = names(folders), values = folders)
 
   return(folders)
 }
