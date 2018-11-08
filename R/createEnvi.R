@@ -3,7 +3,7 @@
 #' @description Defines folder structures and creates them if necessary, loads
 #' libraries, and sets other project relevant parameters.
 #'
-#' @param root_folder project root_folder folder directory.
+#' @param root_folder project root folder directory.
 #' @param folders list of subfolders within the project root folder.
 #' @param folder_names names of the variables that point to subfolders. If not
 #' provided, the folder base paths of the folders is used.
