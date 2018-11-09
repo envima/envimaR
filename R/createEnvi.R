@@ -9,6 +9,7 @@
 #' provided, the base paths of the folders is used.
 #' @param path_prefix a prefix for the folder names.
 #' @param global export path strings as global variables.
+#' @param libs  vector with the  names of libraries
 #' @param alt_env_id alternative system environment attribute used to
 #' check for setting an alternative \code{root_folder}.
 #' @param alt_env_value value of the attribute for which the alternative
@@ -27,12 +28,14 @@
 #' @examples
 #' \dontrun{
 #' createEnvi(root_folder = "~/edu", folders = c("data/", "data/tmp/"),
+#' libs = c("link2GI"),
 #' alt_env_id = "COMPUTERNAME", alt_env_value = "PCRZP",
 #' alt_env_root_folder = "D:\\BEN\\edu")
 #'}
 
 createEnvi = function(root_folder = tempdir(), folders = c("data", "data/tmp"),
                       folder_names = NULL, path_prefix = "path_", global = FALSE,
+                      libs = NULL,
                       alt_env_id = NULL,
                       alt_env_value = NULL,
                       alt_env_root_folder = NULL){
@@ -43,37 +46,15 @@ createEnvi = function(root_folder = tempdir(), folders = c("data", "data/tmp"),
                                 alt_env_value = alt_env_value,
                                 alt_env_root_folder = alt_env_root_folder)
 
-  if(!is.null(alt_env_id)){
-    if(Sys.getenv()[alt_env_id] == alt_env_value){
-      root_folder = alt_env_root_folder
-    }
-  }
+  # Compile and create folders if necessary
+  folders = createFolders(root_folder, folders,
+                          folder_names = folder_names, path_prefix = path_prefix)
 
-  # Create folder list and set variable names pointing to the path values
-  folders = lapply(folders, function(f){
-    file.path(root_folder, f)
-  })
-
-  if(is.null(folder_names)){
-    names(folders) = basename(unlist(folders))
-
-    while(any(duplicated(names(folders)))){
-      names(folders)[duplicated(names(folders))] =
-        paste(basename(dirname(unlist(folders)))[duplicated(names(folders))],
-              names(folders[duplicated(names(folders))]), sep = "_")
-    }
-  } else {
-    names(folders) = folder_names
-  }
-
-  if(!is.null(path_prefix)) names(folders) = paste(path_prefix, names(folders))
-
-  # Check paths for existance and create if necessary
-  for(f in folders){
-    if(!file.exists(f)) dir.create(f, recursive = TRUE)
-  }
-
+  # Set global environment if necessary
   if(global) makeGlobalVariable(names = names(folders), values = folders)
+
+  # Load and install libraries
+  loadLibraries(libs)
 
   return(folders)
 }

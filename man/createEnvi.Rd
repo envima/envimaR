@@ -6,7 +6,7 @@
 \usage{
 createEnvi(root_folder = tempdir(), folders = c("data", "data/tmp"),
   folder_names = NULL, path_prefix = "path_", global = FALSE,
-  alt_env_id = NULL, alt_env_value = NULL,
+  libs = NULL, alt_env_id = NULL, alt_env_value = NULL,
   alt_env_root_folder = NULL)
 }
 \arguments{
@@ -20,6 +20,8 @@ provided, the base paths of the folders is used.}
 \item{path_prefix}{a prefix for the folder names.}
 
 \item{global}{export path strings as global variables.}
+
+\item{libs}{vector with the  names of libraries}
 
 \item{alt_env_id}{alternative system environment attribute used to
 check for setting an alternative \code{root_folder}.}
@@ -39,6 +41,7 @@ libraries, and sets other project relevant parameters.
 \examples{
 \dontrun{
 createEnvi(root_folder = "~/edu", folders = c("data/", "data/tmp/"),
+libs = c("link2GI"),
 alt_env_id = "COMPUTERNAME", alt_env_value = "PCRZP",
 alt_env_root_folder = "D:\\\\BEN\\\\edu")
 }
