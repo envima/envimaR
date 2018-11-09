@@ -3,17 +3,17 @@
 #' @description Defines folder structures and creates them if necessary, loads
 #' libraries, and sets other project relevant parameters.
 #'
-#' @param root_folder project root folder directory.
-#' @param folders list of subfolders within the project root folder.
+#' @param root_folder root directory of the project.
+#' @param folders list of subfolders within the project directory.
 #' @param folder_names names of the variables that point to subfolders. If not
-#' provided, the folder base paths of the folders is used.
-#' @param path_prefix a prefix for the path variable names.
+#' provided, the base paths of the folders is used.
+#' @param path_prefix a prefix for the folder names.
 #' @param global export path strings as global variables.
-#' @param alternative_env_id alternative system environment attribute used to
+#' @param alt_env_id alternative system environment attribute used to
 #' check for setting an alternative \code{root_folder}.
-#' @param alternative_env_value value of the attribute for which the alternative
-#' \code{root_folder} should be set.
-#' @param alternative_root_folder alternative root folder for alternative domain.
+#' @param alt_env_value value of the attribute for which the alternative
+#' root directory of the project should be set.
+#' @param alt_env_root_folder alternative root directory.
 #'
 #' @return A list containing the project settings.
 #'
@@ -22,23 +22,30 @@
 #'
 #' @author Christoph Reudenbach, Thomas Nauss
 #'
+#' @seealso [alternativeEnvi()]
+#'
 #' @examples
 #' \dontrun{
-#' createEnvi(root_folder = tempdir(), folders = c("data/", "data/tmp/"))
+#' createEnvi(root_folder = "~/edu", folders = c("data/", "data/tmp/"),
+#' alt_env_id = "COMPUTERNAME", alt_env_value = "PCRZP",
+#' alt_env_root_folder = "D:\\BEN\\edu")
 #'}
 
 createEnvi = function(root_folder = tempdir(), folders = c("data", "data/tmp"),
                       folder_names = NULL, path_prefix = "path_", global = FALSE,
-                      alternative_env_id = NULL,
-                      alternative_env_value = NULL,
-                      alternative_root_folder = NULL){
+                      alt_env_id = NULL,
+                      alt_env_value = NULL,
+                      alt_env_root_folder = NULL){
 
   # Set root folder or alternative root folder
-  root_folder = gsub("\\\\", "/", path.expand(root_folder))
+  root_folder = alternativeEnvi(root_folder = root_folder,
+                                alt_env_id = alt_env_id,
+                                alt_env_value = alt_env_value,
+                                alt_env_root_folder = alt_env_root_folder)
 
-  if(!is.null(alternative_env_id)){
-    if(Sys.getenv()[alternative_env_id] == alternative_env_value){
-      root_folder = alternative_root_folder
+  if(!is.null(alt_env_id)){
+    if(Sys.getenv()[alt_env_id] == alt_env_value){
+      root_folder = alt_env_root_folder
     }
   }
 

@@ -6,28 +6,28 @@
 \usage{
 createEnvi(root_folder = tempdir(), folders = c("data", "data/tmp"),
   folder_names = NULL, path_prefix = "path_", global = FALSE,
-  alternative_env_id = NULL, alternative_env_value = NULL,
-  alternative_root_folder = NULL)
+  alt_env_id = NULL, alt_env_value = NULL,
+  alt_env_root_folder = NULL)
 }
 \arguments{
-\item{root_folder}{project root folder directory.}
+\item{root_folder}{root directory of the project.}
 
-\item{folders}{list of subfolders within the project root folder.}
+\item{folders}{list of subfolders within the project directory.}
 
 \item{folder_names}{names of the variables that point to subfolders. If not
-provided, the folder base paths of the folders is used.}
+provided, the base paths of the folders is used.}
 
-\item{path_prefix}{a prefix for the path variable names.}
+\item{path_prefix}{a prefix for the folder names.}
 
 \item{global}{export path strings as global variables.}
 
-\item{alternative_env_id}{alternative system environment attribute used to
+\item{alt_env_id}{alternative system environment attribute used to
 check for setting an alternative \code{root_folder}.}
 
-\item{alternative_env_value}{value of the attribute for which the alternative
-\code{root_folder} should be set.}
+\item{alt_env_value}{value of the attribute for which the alternative
+root directory of the project should be set.}
 
-\item{alternative_root_folder}{alternative root folder for alternative domain.}
+\item{alt_env_root_folder}{alternative root directory.}
 }
 \value{
 A list containing the project settings.
@@ -38,8 +38,13 @@ libraries, and sets other project relevant parameters.
 }
 \examples{
 \dontrun{
-createEnvi(root_folder = tempdir(), folders = c("data/", "data/tmp/"))
+createEnvi(root_folder = "~/edu", folders = c("data/", "data/tmp/"),
+alt_env_id = "COMPUTERNAME", alt_env_value = "PCRZP",
+alt_env_root_folder = "D:\\\\BEN\\\\edu")
 }
+}
+\seealso{
+\code{\link[=alternativeEnvi]{alternativeEnvi()}}
 }
 \author{
 Christoph Reudenbach, Thomas Nauss
