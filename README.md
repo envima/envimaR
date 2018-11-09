@@ -2,4 +2,5 @@
 Environmental Informatics Lab @ Marburg University
 
 # envimaR
-Functions for setting up a typical R project environment as used by our team.
+Helpers for setting up working environments which focus on using the same 
+initialization parameters across different computers and team members.
