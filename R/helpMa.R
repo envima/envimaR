@@ -73,7 +73,7 @@ createFolders = function(root_folder, folders,
     names(folders) = folder_names
   }
 
-  if(!is.null(path_prefix)) names(folders) = paste(path_prefix, names(folders))
+  if(!is.null(path_prefix)) names(folders) = paste0(path_prefix, names(folders))
 
   # Check paths for existance and create if necessary
   for(f in folders){
