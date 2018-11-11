@@ -105,11 +105,68 @@ createFolders = function(root_folder, folders,
 #' }
 loadLibraries = function(libs){
   success = lapply(libs, function(l){
-    if(!l %in% installed.packages()){
-      install.packages(l)
+    if(!l %in% utils::installed.packages()){
+      utils::install.packages(l)
     }
     require(l, character.only = TRUE)
   })
   names(success) = libs
   return(success)
+}
+
+
+
+
+#' Source functions from standard or given directory
+#'
+#' @description  Source functions into the R environment located in a specified
+#' folder.
+#'
+#' @param fcts_folder path of the folder holding the functions. All files in
+#' this folder will be sourced.
+#'
+#' @return  Information if sourcing was successfull based on try function.
+#'
+#' @keywords internal
+#'
+#' @author Christoph Reudenbach, Thomas Nauss
+#'
+#'@examples
+#' \dontrun{
+#' # sourceFunctions(fcts_folder = "~/project/src/fcts")
+#' }
+sourceFunctions = function(fcts_folder){
+  fcts = list.files(fcts_folder, full.names = TRUE)
+  success = lapply(fcts, function(f){
+    try(source(f), silent = TRUE)
+  })
+  names(success) = fcts
+  return(success)
+}
+
+
+
+
+#' Get values of default environment look-up table
+#'
+#' @description
+#' Get values of default environment look-up table (not required for the package
+#' but to cross-check from a user).
+#'
+#' @param None
+#'
+#' @return List containing lut content.
+#'
+#' @name lutInfo
+#' @export lutInfo
+#'
+#' @details None
+#'
+#' @examples None
+#' \dontrun{
+#' lutInfo()
+#' }
+
+lutInfo <- function(){
+  return(dflt)
 }
