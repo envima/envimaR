@@ -5,7 +5,7 @@
 \title{Compile folder list and create folders}
 \usage{
 createFolders(root_folder, folders, folder_names = NULL,
-  path_prefix = "path_")
+  path_prefix = "path_", create_folders = TRUE)
 }
 \arguments{
 \item{root_folder}{root directory of the project.}
@@ -16,6 +16,8 @@ createFolders(root_folder, folders, folder_names = NULL,
 provided, the base paths of the folders is used.}
 
 \item{path_prefix}{a prefix for the folder names.}
+
+\item{create_folders}{create folders if not existing already.}
 }
 \value{
 List with folder paths and names.

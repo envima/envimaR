@@ -41,7 +41,7 @@ makeGlobalVariable = function(names, values) {
 #' @param git_repository name of the project's git repository. Will be
 #' added to the folders and subfolders defined in default "lut" or supplied by
 #' user will be created.
-#' @param git_folders subdirectories within git repository that should be
+#' @param git_subfolders subdirectories within git repository that should be
 #' created.
 #' @param lut_mode use predefined environmental settings. In this case, only the
 #' name of the git repository must be supplied to the function.
@@ -58,12 +58,13 @@ makeGlobalVariable = function(names, values) {
 #'
 #' }
 
-addGitFolders = function(folders, git_repository = NULL, git_folders = NULL,
+addGitFolders = function(folders, git_repository = NULL, git_subfolders = NULL,
                          lut_mode = FALSE) {
-  if(is.null(git_folders) & dflt$git_folders){
-    git_folders = dflt$git_folders
+  if(is.null(git_subfolders)){
+    folders = c(folders, git_repository)
+  } else {
+    folders = c(folders, file.path(git_repository, git_subfolders))
   }
-  folders = c(folders, file.path(git_repository, dflt$git_subfolders))
 }
 
 
@@ -78,6 +79,7 @@ addGitFolders = function(folders, git_repository = NULL, git_folders = NULL,
 #' @param folder_names names of the variables that point to subfolders. If not
 #' provided, the base paths of the folders is used.
 #' @param path_prefix a prefix for the folder names.
+#' @param create_folders create folders if not existing already.
 #'
 #' @return  List with folder paths and names.
 #'
@@ -91,7 +93,8 @@ addGitFolders = function(folders, git_repository = NULL, git_folders = NULL,
 #' }
 # Create folder list and set variable names pointing to the path values
 createFolders = function(root_folder, folders,
-                         folder_names = NULL, path_prefix = "path_"){
+                         folder_names = NULL, path_prefix = "path_",
+                         create_folders = TRUE){
 
   folders = lapply(folders, function(f){
     file.path(root_folder, f)

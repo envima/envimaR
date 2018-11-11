@@ -5,10 +5,12 @@
 \title{Define and create a project environment}
 \usage{
 createEnvi(root_folder = tempdir(), folders = c("data", "data/tmp"),
-  folder_names = NULL, git_name = NULL, path_prefix = "path_",
-  global = FALSE, libs = NULL, fcts_folder = NULL,
-  source_functions = !is.null(fcts_folder), alt_env_id = NULL,
-  alt_env_value = NULL, alt_env_root_folder = NULL, lut_mode = FALSE)
+  folder_names = NULL, git_repository = NULL, git_subfolders = NULL,
+  path_prefix = "path_", global = FALSE, libs = NULL,
+  fcts_folder = NULL, source_functions = !is.null(fcts_folder),
+  alt_env_id = NULL, alt_env_value = NULL,
+  alt_env_root_folder = NULL, lut_mode = FALSE,
+  create_folders = TRUE)
 }
 \arguments{
 \item{root_folder}{root directory of the project.}
@@ -18,8 +20,11 @@ createEnvi(root_folder = tempdir(), folders = c("data", "data/tmp"),
 \item{folder_names}{names of the variables that point to subfolders. If not
 provided, the base paths of the folders is used.}
 
-\item{git_name}{name of the project's git repository. In "lut" mode, it will
-be automatically added to the folder and subfolders src, fcts will be
+\item{git_repository}{name of the project's git repository. Will be
+added to the folders and subfolders defined in default "lut" or supplied by
+user will be created.}
+
+\item{git_subfolders}{subdirectories within git repository that should be
 created.}
 
 \item{path_prefix}{a prefix for the folder names.}
@@ -43,6 +48,8 @@ root directory of the project should be set.}
 
 \item{lut_mode}{use predefined environmental settings. In this case, only the
 name of the git repository must be supplied to the function.}
+
+\item{create_folders}{create folders if not existing already.}
 }
 \value{
 A list containing the project settings.

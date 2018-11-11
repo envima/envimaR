@@ -10,7 +10,7 @@
 #' @param git_repository name of the project's git repository. Will be
 #' added to the folders and subfolders defined in default "lut" or supplied by
 #' user will be created.
-#' @param git_folders subdirectories within git repository that should be
+#' @param git_subfolders subdirectories within git repository that should be
 #' created.
 #' @param path_prefix a prefix for the folder names.
 #' @param global logical: export path strings as global variables?
@@ -25,6 +25,7 @@
 #' @param alt_env_root_folder alternative root directory.
 #' @param lut_mode use predefined environmental settings. In this case, only the
 #' name of the git repository must be supplied to the function.
+#' @param create_folders create folders if not existing already.
 #'
 #' @return A list containing the project settings.
 #'
@@ -45,14 +46,15 @@
 
 createEnvi = function(root_folder = tempdir(), folders = c("data", "data/tmp"),
                       folder_names = NULL, git_repository = NULL,
-                      git_folders = NULL,
+                      git_subfolders = NULL,
                       path_prefix = "path_", global = FALSE,
                       libs = NULL,
                       fcts_folder = NULL, source_functions = !is.null(fcts_folder),
                       alt_env_id = NULL,
                       alt_env_value = NULL,
                       alt_env_root_folder = NULL,
-                      lut_mode = FALSE){
+                      lut_mode = FALSE,
+                      create_folders = TRUE){
 
   if(lut_mode){
     for(i in seq(length(dftl))){
@@ -69,10 +71,11 @@ createEnvi = function(root_folder = tempdir(), folders = c("data", "data/tmp"),
   # Compile and create folders if necessary
   if(!is.null(git_repository)){
     folders = addGitFolders(folders = folders, git_repository = git_repository,
-                            git_folders = git_folders, lut_mode = lut_mode)
+                            git_subfolders = git_subfolders, lut_mode = lut_mode)
   }
   folders = createFolders(root_folder, folders,
-                          folder_names = folder_names, path_prefix = path_prefix)
+                          folder_names = folder_names, path_prefix = path_prefix,
+                          create_folders = create_folders)
 
   # Set global environment if necessary
   if(global) makeGlobalVariable(names = names(folders), values = folders)
