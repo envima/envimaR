@@ -20,7 +20,7 @@ pckgDefaults = function(){
     folders = c("data", "data/tmp",
                 "doc", "log"),
 
-    git_subfolders = c("src", "fcts"),
+    git_subfolders = c("src", "doc", "fcts"),
 
     path_prefix = "path_",
 

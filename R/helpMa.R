@@ -32,6 +32,42 @@ makeGlobalVariable = function(names, values) {
 
 
 
+#' Extent folder list by git repository
+#'
+#' @description  Extent folder list by git repository and create subdirectories
+#' according to default values.
+#'
+#' @param folders list of subfolders within the project directory.
+#' @param git_repository name of the project's git repository. Will be
+#' added to the folders and subfolders defined in default "lut" or supplied by
+#' user will be created.
+#' @param git_folders subdirectories within git repository that should be
+#' created.
+#' @param lut_mode use predefined environmental settings. In this case, only the
+#' name of the git repository must be supplied to the function.
+#'
+#' @name addGitFolders
+#' @keywords internal
+#'
+#' @author Christoph Reudenbach, Thomas Nauss
+#'
+#'@examples
+#' \dontrun{
+#'
+#' addGitFolders(folders = c("data", "data/tmp"), git_repository = "myproject")
+#'
+#' }
+
+addGitFolders = function(folders, git_repository = NULL, git_folders = NULL,
+                         lut_mode = FALSE) {
+  if(is.null(git_folders) & dflt$git_folders){
+    git_folders = dflt$git_folders
+  }
+  folders = c(folders, file.path(git_repository, dflt$git_subfolders))
+}
+
+
+
 #' Compile folder list and create folders
 #'
 #' @description  Compile folder list with absolut paths and create folders if
