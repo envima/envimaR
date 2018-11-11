@@ -1,5 +1,7 @@
 #' Create look-up table data for defining environment defaults
 #'
+#' @details After changing something, run [lutUpdate()] to update the LUT.
+#'
 #' @return A list containing the default project settings.
 #'
 #' @keywords internal
@@ -8,7 +10,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' pckgDefaults()
+#' lutUpdate()
 #'}
 
 pckgDefaults = function(){

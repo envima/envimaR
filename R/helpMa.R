@@ -186,7 +186,7 @@ sourceFunctions = function(fcts_folder){
 
 
 
-#' Get values of default environment look-up table
+#' Get values of default environment from internal look-up table
 #'
 #' @description
 #' Get values of default environment look-up table (not required for the package
@@ -209,3 +209,31 @@ sourceFunctions = function(fcts_folder){
 lutInfo <- function(){
   return(dflt)
 }
+
+
+
+
+#' Update values of default environment to internal look-up table
+#'
+#' @description
+#' Update values of default environment to internal look-up table. Run it
+#' after updating [pckgDefaults()].
+#'
+#' @param None
+#'
+#' @return List containing lut content.
+#'
+#' @name lutUpdate
+#' @export lutUpdate
+#'
+#' @details None
+#'
+#' @examples None
+#' \dontrun{
+#' lutInfo()
+#' }
+
+lutUpdate <- function(){
+  pckgDefaults()
+}
+

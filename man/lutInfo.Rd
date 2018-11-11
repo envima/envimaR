@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpMa.R
 \name{lutInfo}
 \alias{lutInfo}
-\title{Get values of default environment look-up table}
+\title{Get values of default environment from internal look-up table}
 \usage{
 lutInfo()
 }

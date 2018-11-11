@@ -3,3 +3,4 @@
 export(alternativeEnvi)
 export(createEnvi)
 export(lutInfo)
+export(lutUpdate)

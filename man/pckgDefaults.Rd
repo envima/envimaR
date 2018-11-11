@@ -12,9 +12,12 @@ A list containing the default project settings.
 \description{
 Create look-up table data for defining environment defaults
 }
+\details{
+After changing something, run \code{\link[=lutUpdate]{lutUpdate()}} to update the LUT.
+}
 \examples{
 \dontrun{
-pckgDefaults()
+lutUpdate()
 }
 }
 \author{
