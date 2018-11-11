@@ -2,4 +2,3 @@
 
 export(alternativeEnvi)
 export(createEnvi)
-export(lutInfo)
