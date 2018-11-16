@@ -46,7 +46,7 @@
 
 createEnvi = function(root_folder = tempdir(), folders = c("data", "data/tmp"),
                       folder_names = NULL, git_repository = NULL,
-                      git_subfolders = NULL,
+                      git_subfolders = c("src", "doc"),
                       path_prefix = "path_", global = FALSE,
                       libs = NULL,
                       fcts_folder = NULL, source_functions = !is.null(fcts_folder),

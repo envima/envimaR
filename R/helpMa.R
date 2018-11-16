@@ -102,11 +102,14 @@ createFolders = function(root_folder, folders,
 
   if(is.null(folder_names)){
     names(folders) = basename(unlist(folders))
+    tmplt = unlist(folders)
 
     while(any(duplicated(names(folders)))){
-      names(folders)[duplicated(names(folders))] =
-        paste(basename(dirname(unlist(folders)))[duplicated(names(folders))],
-              names(folders[duplicated(names(folders))]), sep = "_")
+      tmplt = dirname(tmplt)
+      dplcts = which(duplicated(names(folders), fromLast = FALSE) |
+                       duplicated(names(folders), fromLast = TRUE))
+      names(folders)[dplcts] =
+        paste(basename(tmplt)[dplcts], names(folders[dplcts]), sep = "_")
     }
   } else {
     names(folders) = folder_names
@@ -188,11 +191,8 @@ sourceFunctions = function(fcts_folder){
 
 #' Get values of default environment from internal look-up table
 #'
-#' @description
-#' Get values of default environment look-up table (not required for the package
-#' but to cross-check from a user).
-#'
-#' @param None
+#' @description Get values of default environment look-up table (not required
+#' for the package but to cross-check from a user).
 #'
 #' @return List containing lut content.
 #'
@@ -215,11 +215,8 @@ lutInfo <- function(){
 
 #' Update values of default environment to internal look-up table
 #'
-#' @description
-#' Update values of default environment to internal look-up table. Run it
-#' after updating [pckgDefaults()].
-#'
-#' @param None
+#' @description Update values of default environment to internal look-up table.
+#' Run it after updating [pckgDefaults()].
 #'
 #' @return List containing lut content.
 #'

@@ -6,15 +6,12 @@
 \usage{
 lutUpdate()
 }
-\arguments{
-\item{None}{}
-}
 \value{
 List containing lut content.
 }
 \description{
-Update values of default environment to internal look-up table. Run it
-after updating \code{\link[=pckgDefaults]{pckgDefaults()}}.
+Update values of default environment to internal look-up table.
+Run it after updating \code{\link[=pckgDefaults]{pckgDefaults()}}.
 }
 \details{
 None

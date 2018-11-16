@@ -6,15 +6,12 @@
 \usage{
 lutInfo()
 }
-\arguments{
-\item{None}{}
-}
 \value{
 List containing lut content.
 }
 \description{
-Get values of default environment look-up table (not required for the package
-but to cross-check from a user).
+Get values of default environment look-up table (not required
+for the package but to cross-check from a user).
 }
 \details{
 None
