@@ -17,7 +17,7 @@ pckgDefaults = function(){
 
   dflt = list(
 
-    root_folder = "~/plygrnd",
+    root_folder = "~/proj",
 
     folders = c("data", "data/tmp",
                 "doc", "log"),
