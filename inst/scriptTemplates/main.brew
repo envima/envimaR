@@ -1,8 +1,9 @@
 #-----------------------------------------------------------------------
-# PROJECT <%= rootDir %>
+# PROJECT <%= basename(getOption("projectRoot")) %>
 #-----------------------------------------------------------------------
-#- 00
+#
 #--- NOTE
+#
 # This is the main script of the project. It should contain all the information
 # necessary to understand the goal of the project and the different steps of
 # your analysis.
@@ -19,20 +20,19 @@
 # scripts and describe here what each script does. You can create a link to them
 # with function 'prScript'.
 
-#- 01
 #--- GOAL:
 
 
-#- 02
+
 #--- APPROACH:
 
 
-#- 03
+
 #--- DETAILS:
 
 
-#- 04
-#---SETUP PROJECT
+#- 01
+#--- RUN ANALYSIS
 
 <% if (instructions) { -%>
 

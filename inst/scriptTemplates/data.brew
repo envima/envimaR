@@ -1,7 +1,7 @@
 #-----------------------------------------------------------------------
-# SCRIPT <%= gsub("^data?|\\.R$", "", basename(path)) %>
+# SCRIPT <%= gsub("\\.R$", "", basename(path)) %>
 #-----------------------------------------------------------------------
-#- 00
+#-
 #--- NOTE
 # In this file, you should the code that imports data and prepare it for
 # analysis.
@@ -16,20 +16,18 @@
 # Finally if this script becomes too large, you can split your code in multiple
 # scripts and create a link to them with function 'prScript'.
 
-#- 01
 #--- INPUT:
 # what is the source data ?
 
-#- 02
-#--- OUTPUT:
-# what data objects will the script create ?
 
-#- 03
+#--- OUTPUT:
+# what data objects will the script create and whatfore?
+
+
 #--- DETAILS:
 # Anything else ? Where did you get the data ? Did you do some manual
 # transformation ?
 
-#- 04
 #--- DATA PREPROCESSING
 
 <% if (instructions) { -%>
