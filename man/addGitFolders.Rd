@@ -4,8 +4,12 @@
 \alias{addGitFolders}
 \title{Extent folder list by git repository}
 \usage{
-addGitFolders(folders, git_repository = NULL, git_subfolders = NULL,
-  lut_mode = FALSE)
+addGitFolders(
+  folders,
+  git_repository = NULL,
+  git_subfolders = NULL,
+  lut_mode = FALSE
+)
 }
 \arguments{
 \item{folders}{list of subfolders within the project directory.}

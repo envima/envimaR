@@ -4,13 +4,23 @@
 \alias{createEnvi}
 \title{Define and create a project environment}
 \usage{
-createEnvi(root_folder = tempdir(), folders = c("data", "data/tmp"),
-  folder_names = NULL, git_repository = NULL,
-  git_subfolders = c("src", "doc"), path_prefix = "path_",
-  global = FALSE, libs = NULL, fcts_folder = NULL,
-  source_functions = !is.null(fcts_folder), alt_env_id = NULL,
-  alt_env_value = NULL, alt_env_root_folder = NULL, lut_mode = FALSE,
-  create_folders = TRUE)
+createEnvi(
+  root_folder = tempdir(),
+  folders = c("data", "data/tmp"),
+  folder_names = NULL,
+  git_repository = NULL,
+  git_subfolders = c("src", "doc"),
+  path_prefix = "path_",
+  global = FALSE,
+  libs = NULL,
+  fcts_folder = NULL,
+  source_functions = !is.null(fcts_folder),
+  alt_env_id = NULL,
+  alt_env_value = NULL,
+  alt_env_root_folder = NULL,
+  lut_mode = FALSE,
+  create_folders = TRUE
+)
 }
 \arguments{
 \item{root_folder}{root directory of the project.}

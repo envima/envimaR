@@ -4,8 +4,13 @@
 \alias{createFolders}
 \title{Compile folder list and create folders}
 \usage{
-createFolders(root_folder, folders, folder_names = NULL,
-  path_prefix = "path_", create_folders = TRUE)
+createFolders(
+  root_folder,
+  folders,
+  folder_names = NULL,
+  path_prefix = "path_",
+  create_folders = TRUE
+)
 }
 \arguments{
 \item{root_folder}{root directory of the project.}

@@ -4,8 +4,12 @@
 \alias{alternativeEnvi}
 \title{Define basic or alternative environment depending on actual system}
 \usage{
-alternativeEnvi(root_folder = tempdir(), alt_env_id = NULL,
-  alt_env_value = NULL, alt_env_root_folder = NULL)
+alternativeEnvi(
+  root_folder = tempdir(),
+  alt_env_id = NULL,
+  alt_env_value = NULL,
+  alt_env_root_folder = NULL
+)
 }
 \arguments{
 \item{root_folder}{root directory of the project.}
