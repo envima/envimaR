@@ -33,3 +33,4 @@ test_that("automatic folder names", {
   expect_true(grepl("edu/data/lidar/org", envrmt$path_lidar_org))
 
 })
+
