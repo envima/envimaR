@@ -38,53 +38,60 @@
 #'
 #' @examples
 #' \dontrun{
-#' createEnvi(root_folder = "~/edu", folders = c("data/", "data/tmp/"),
-#' libs = c("link2GI"),
-#' alt_env_id = "COMPUTERNAME", alt_env_value = "PCRZP",
-#' alt_env_root_folder = "D:\\BEN\\edu")
-#'}
-
-createEnvi = function(root_folder = tempdir(), folders = c("data", "data/tmp"),
-                      folder_names = NULL, git_repository = NULL,
-                      git_subfolders = c("src", "doc"),
-                      path_prefix = "path_", global = FALSE,
-                      libs = NULL,
-                      fcts_folder = NULL, source_functions = !is.null(fcts_folder),
-                      alt_env_id = NULL,
-                      alt_env_value = NULL,
-                      alt_env_root_folder = NULL,
-                      lut_mode = FALSE,
-                      create_folders = TRUE){
-
-  if(lut_mode){
-    for(i in seq(length(dftl))){
+#' createEnvi(
+#'   root_folder = "~/edu", folders = c("data/", "data/tmp/"),
+#'   libs = c("link2GI"),
+#'   alt_env_id = "COMPUTERNAME", alt_env_value = "PCRZP",
+#'   alt_env_root_folder = "D:\\BEN\\edu"
+#' )
+#' }
+#'
+createEnvi <- function(root_folder = tempdir(), folders = c("data", "data/tmp"),
+                       folder_names = NULL, git_repository = NULL,
+                       git_subfolders = c("src", "doc"),
+                       path_prefix = "path_", global = FALSE,
+                       libs = NULL,
+                       fcts_folder = NULL, source_functions = !is.null(fcts_folder),
+                       alt_env_id = NULL,
+                       alt_env_value = NULL,
+                       alt_env_root_folder = NULL,
+                       lut_mode = FALSE,
+                       create_folders = TRUE) {
+  if (lut_mode) {
+    dftl <- envimaR:::dflt
+    for (i in seq(length(dftl))) {
       assign(names(dftl[i]), dftl[[i]])
     }
   }
 
   # Set root folder or alternative root folder
-  root_folder = alternativeEnvi(root_folder = root_folder,
-                                alt_env_id = alt_env_id,
-                                alt_env_value = alt_env_value,
-                                alt_env_root_folder = alt_env_root_folder)
+  root_folder <- alternativeEnvi(
+    root_folder = root_folder,
+    alt_env_id = alt_env_id,
+    alt_env_value = alt_env_value,
+    alt_env_root_folder = alt_env_root_folder
+  )
 
   # Compile and create folders if necessary
-  if(!is.null(git_repository)){
-    folders = addGitFolders(folders = folders, git_repository = git_repository,
-                            git_subfolders = git_subfolders, lut_mode = lut_mode)
+  if (!is.null(git_repository)) {
+    folders <- addGitFolders(
+      folders = folders, git_repository = git_repository,
+      git_subfolders = git_subfolders, lut_mode = lut_mode
+    )
   }
-  folders = createFolders(root_folder, folders,
-                          folder_names = folder_names, path_prefix = path_prefix,
-                          create_folders = create_folders)
+  folders <- createFolders(root_folder, folders,
+    folder_names = folder_names, path_prefix = path_prefix,
+    create_folders = create_folders
+  )
 
   # Set global environment if necessary
-  if(global) makeGlobalVariable(names = names(folders), values = folders)
+  if (global) makeGlobalVariable(names = names(folders), values = folders)
 
   # Load and install libraries
   loadLibraries(libs)
 
   # Source functions
-  if(source_functions) sourceFunctions(fcts_folder)
+  if (source_functions) sourceFunctions(fcts_folder)
 
   return(folders)
 }

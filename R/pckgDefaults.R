@@ -11,16 +11,13 @@
 #' @examples
 #' \dontrun{
 #' lutUpdate()
-#'}
-
-pckgDefaults = function(){
-
-  dflt = list(
-
+#' }
+#'
+pckgDefaults <- function() {
+  dflt <- list(
     root_folder = "~/plygrnd",
 
-    folders = c("data", "data/tmp",
-                "doc", "log"),
+    folders = c("data", "data/tmp", "doc"),
 
     git_subfolders = c("src", "doc", "fcts"),
 
@@ -35,8 +32,7 @@ pckgDefaults = function(){
     alt_env_id = "COMPUTERNAME",
     alt_env_value = "PCRZP",
     alt_env_root_folder = "D:\\BEN\\plygrnd"
-
   )
 
-  devtools::use_data(dflt, overwrite = TRUE, internal = TRUE)
+  usethis::use_data(dflt, overwrite = TRUE, internal = TRUE)
 }
