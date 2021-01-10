@@ -1,8 +1,5 @@
 library(testthat)
 library(envimaR)
 
-# test_check("envimaR")
-testthat::test_file("./tests/testthat/initEnvimaR.R")
+test_check("envimaR")
 
-
-path <- testthat_example("initEnvimaR")

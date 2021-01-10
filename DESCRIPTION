@@ -2,8 +2,18 @@ Package: envimaR
 Type: Package
 Title: Utility functions to configure standard project environments in labs
 Version: 0.1.0
-Author: Christoph Reudenbach, Thomas Nauss
-Maintainer: Thomas Nauss <nauss@staff.uni-marburg.de>
+Authors@R: 
+  c(person(given = "Thomas",
+           family = "Nauss",
+           role = c("aut", "cre"),
+           email = "nauss@staff.uni-marburg.de",
+           comment = c(ORCID = "0000-0003-3422-0960")),
+    person(given = "Christoph",
+           family = "Reudenbach",
+           role = c("aut")),
+    person(given = "Marvin",
+           family = "Ludwig",
+           role = "ctb"))
 Description: Helpers for setting up working environments which focus on using 
     the same initialization parameters across different computers and team 
     members.
@@ -15,3 +25,7 @@ Roxygen: list(markdown = TRUE)
 Suggests: testthat
 Depends: 
     R (>= 2.10)
+Imports: 
+    brew,
+    data.tree,
+    usethis

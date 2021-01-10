@@ -8,8 +8,6 @@
 #' @name makeGlobalVariable
 #' @keywords internal
 #'
-#' @author Christoph Reudenbach, Thomas Nauss
-#'
 #' @examples
 #' \dontrun{
 #' # creates the global variable \\code{path_data} with the value \\code{~/data}
@@ -48,11 +46,8 @@ makeGlobalVariable <- function(names, values) {
 #' @name addGitFolders
 #' @keywords internal
 #'
-#' @author Christoph Reudenbach, Thomas Nauss
-#'
 #' @examples
 #' \dontrun{
-#'
 #' addGitFolders(folders = c("data", "data/tmp"), git_repository = "myproject")
 #' }
 #'
@@ -83,8 +78,6 @@ addGitFolders <- function(folders, git_repository = NULL, git_subfolders = NULL,
 #'
 #' @keywords internal
 #'
-#' @author Christoph Reudenbach, Thomas Nauss
-#'
 #' @examples
 #' \dontrun{
 #' # createFolders(root_folder = "~/edu", folders = c("data/", "data/tmp/"))
@@ -93,9 +86,11 @@ addGitFolders <- function(folders, git_repository = NULL, git_subfolders = NULL,
 createFolders <- function(root_folder, folders,
                           folder_names = NULL, path_prefix = "path_",
                           create_folders = TRUE) {
+
   folders <- lapply(folders, function(f) {
     file.path(root_folder, f)
   })
+  folders <- folders[!duplicated(folders)]
 
   if (is.null(folder_names)) {
     names(folders) <- basename(unlist(folders))
@@ -136,8 +131,6 @@ createFolders <- function(root_folder, folders,
 #'
 #' @keywords internal
 #'
-#' @author Christoph Reudenbach, Thomas Nauss
-#'
 #' @examples
 #' \dontrun{
 #' # loadLibraries(libs = C("link2GI"))
@@ -168,14 +161,12 @@ loadLibraries <- function(libs) {
 #'
 #' @keywords internal
 #'
-#' @author Christoph Reudenbach, Thomas Nauss
-#'
 #' @examples
 #' \dontrun{
 #' # sourceFunctions(fcts_folder = "~/project/src/fcts")
 #' }
 sourceFunctions <- function(fcts_folder) {
-  fcts <- list.files(fcts_folder, full.names = TRUE)
+  fcts <- list.files(fcts_folder, full.names = TRUE, recursive = TRUE)
   success <- lapply(fcts, function(f) {
     try(source(f), silent = TRUE)
   })
@@ -199,7 +190,6 @@ sourceFunctions <- function(fcts_folder) {
 #' @details None
 #'
 #' @examples
-#' None
 #' \dontrun{
 #' lutInfo()
 #' }
@@ -224,36 +214,10 @@ lutInfo <- function() {
 #' @details None
 #'
 #' @examples
-#' None
 #' \dontrun{
 #' lutInfo()
 #' }
 #'
 lutUpdate <- function() {
   pckgDefaults()
-}
-
-
-
-
-#' Create files or scripts from templates
-#'
-#' @description Create files or scripts from brew templates supplied with the package.
-#'
-#' @return NULL
-#'
-#' @name createScript
-#' @export createScript
-#'
-#' @details None
-#'
-#' @examples
-#' None
-#' \dontrun{
-#' createScript()
-#' }
-#'
-createScript <- function(new_file = file.path(tempdir(), "tmp.R"), template = "script_function", notes = TRUE) {
-  template_path <- system.file(sprintf("templates/%s.brew", template), package = "envimaR")
-  brew::brew(template_path, new_file)
 }

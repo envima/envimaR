@@ -24,6 +24,3 @@ p$data$here
 }
 
 }
-\author{
-Marvin Ludwig
-}

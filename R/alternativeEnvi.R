@@ -15,8 +15,6 @@
 #' @name alternativeEnvi
 #' @export alternativeEnvi
 #'
-#' @author Christoph Reudenbach, Thomas Nauss
-#'
 #' @seealso [createEnvi()]
 #'
 #' @examples

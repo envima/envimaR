@@ -17,7 +17,6 @@ for the package but to cross-check from a user).
 None
 }
 \examples{
-None
 \dontrun{
 lutInfo()
 }

@@ -9,8 +9,6 @@
 #' @name getEnvi
 #' @export getEnvi
 #'
-#' @author Marvin Ludwig
-#'
 #' @examples
 #' \dontrun{
 #'

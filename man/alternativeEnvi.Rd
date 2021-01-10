@@ -41,6 +41,3 @@ alternativeEnvi(
 \seealso{
 \code{\link[=createEnvi]{createEnvi()}}
 }
-\author{
-Christoph Reudenbach, Thomas Nauss
-}

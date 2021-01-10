@@ -7,8 +7,6 @@
 #' @keywords internal
 #'  # Standard setup for envimaR
 #'
-#' @author Christoph Reudenbach, Thomas Nauss
-#'
 #' @examples
 #' \dontrun{
 #' pckgDefaults()
@@ -25,7 +23,6 @@ pckgDefaults <- function() { envimar <- list(
     path_prefix = NULL,
     global = FALSE,
     libs = NULL,
-    fcts_folder = "functions",
     alt_env_id = "COMPUTERNAME",
     alt_env_value = "PCRZP",
     alt_env_root_folder = "D:\\BEN\\plygrnd",

@@ -8,41 +8,44 @@ initEnvimaR(
   root_folder = ".",
   folders = NULL,
   folder_names = NULL,
+  path_prefix = NULL,
   init_git = TRUE,
-  code_subfolders = c("src", "functions"),
+  code_subfolders = c("src", "src/functions"),
   init_dvc = TRUE,
   dvc_subfolders = "data",
   dvc_cache = NULL,
-  path_prefix = NULL,
   global = FALSE,
   libs = NULL,
-  fcts_folder = NULL,
-  source_functions = !is.null(fcts_folder),
   alt_env_id = NULL,
   alt_env_value = NULL,
   alt_env_root_folder = NULL,
-  standard_setup = c("envimar", "envimar_no_dvc", "envimar_no_git_dvc"),
-  overwrite = FALSE
+  standard_setup = c("envimar", "envimar_no_dvc", "envimar_no_git_dvc")
 )
 }
 \arguments{
 \item{root_folder}{root directory of the project.}
 
-\item{folders}{list of subfolders within the project directory.}
+\item{folders}{list of subfolders within the project directory that will be created.}
 
-\item{folder_names}{names of the variables that point to subfolders. If not
+\item{folder_names}{names of the variable values that point to subfolders. If not
 provided, the base paths of the folders is used.}
 
-\item{path_prefix}{a prefix for the folder names.}
+\item{path_prefix}{a prefix for the variable values that point to the created folders.}
+
+\item{init_git}{logical: init git repository in the project directory.}
+
+\item{code_subfolders}{subfolders for scripts and functions within the project directory that will be created. The
+folders src and src/functions are mandatory.}
+
+\item{init_dvc}{logical: init dvc repository in the project't git repository.}
+
+\item{dvc_subfolders}{subfolders for data that should be added to dvc.}
+
+\item{dvc_cache}{dvc cache directory. If NULL, the default will be used (i.e. local cache) within the dvc repository.}
 
 \item{global}{logical: export path strings as global variables?}
 
-\item{libs}{vector with the  names of libraries}
-
-\item{fcts_folder}{path of the folder holding the functions. All files in
-this folder will be sourced.}
-
-\item{source_functions}{logical: should functions be sourced?}
+\item{libs}{vector with the  names of libraries that are required for the initial project.}
 
 \item{alt_env_id}{alternative system environment attribute used to
 check for setting an alternative \code{root_folder}.}
@@ -52,38 +55,32 @@ root directory of the project should be set.}
 
 \item{alt_env_root_folder}{alternative root directory.}
 
-\item{git_repository}{name of the project's git repository. Will be
-added to the folders and subfolders defined in default "lut" or supplied by
-user will be created.}
-
-\item{git_subfolders}{subdirectories within git repository that should be
-created.}
-
-\item{lut_mode}{use predefined environmental settings. In this case, only the
-name of the git repository must be supplied to the function.}
-
-\item{create_folders}{create folders if not existing already.}
+\item{standard_setup}{use predefined settings. In this case, only the name of the root folder is required. See
+names(envimaR::lutInfo()) for available standards.}
 }
 \value{
-A list containing the project settings.
+envrmt, i.e. a list containing the project settings.
 }
 \description{
-Set up the project environment, a folder structure and git and dvc, if necessary.
+Set up the project environment with a defined folder structure, an RStudio project, initial script and
+settings templates and git and dvc repository, if necessary.
+}
+\details{
+The function uses \link{createEnvi} for setting up the folders. Once the project is creaeted, manage the overall
+configuration of the project by the src/functions/000_settings.R script. It is sourced at the begining of the
+template scripts that are created by default. Define additional constans, required libraries etc. in the
+000_settings.R at any time. If additonal folders are required later, just add them manually. They will be parsed as
+part of the 000_settings.R and added to a variable called envrmt that allows easy acces to any of the folders. Use
+this variable to load/save data to avoid any hard coded links in the scripts except the top-level root folder which
+is defined once in the main control script located at src/control.R.
 }
 \examples{
 \dontrun{
-createEnvi(
-  root_folder = "~/edu", folders = c("data/", "data/tmp/"),
-  libs = c("link2GI"),
-  alt_env_id = "COMPUTERNAME", alt_env_value = "PCRZP",
-  alt_env_root_folder = "D:\\\\BEN\\\\edu"
-)
+root_folder <- tempdir()
+envrmt <- initEnvimaR(root_folder = root_folder, standard_setup = "envimar")
 }
 
 }
 \seealso{
-\code{\link[=alternativeEnvi]{alternativeEnvi()}}
-}
-\author{
-Christoph Reudenbach, Thomas Nauss
+\code{\link[=createEnvi]{createEnvi()}}
 }

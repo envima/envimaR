@@ -8,11 +8,9 @@ createEnvi(
   root_folder = tempdir(),
   folders = c("data", "data/tmp"),
   folder_names = NULL,
-  git_repository = NULL,
+  path_prefix = NULL,
   code_subfolders = NULL,
   dvc_subfolders = NULL,
-  git_subfolders = NULL,
-  path_prefix = NULL,
   global = FALSE,
   libs = NULL,
   fcts_folder = NULL,
@@ -20,8 +18,11 @@ createEnvi(
   alt_env_id = NULL,
   alt_env_value = NULL,
   alt_env_root_folder = NULL,
+  standard_setup = NULL,
   lut_mode = NULL,
-  create_folders = TRUE
+  create_folders = TRUE,
+  git_repository = NULL,
+  git_subfolders = NULL
 )
 }
 \arguments{
@@ -32,16 +33,11 @@ createEnvi(
 \item{folder_names}{names of the variables that point to subfolders. If not
 provided, the base paths of the folders is used.}
 
-\item{git_repository}{name of the project's git repository. Will be
-added to the folders and subfolders defined in default "lut" or supplied by
-user will be created.}
+\item{path_prefix}{a prefix for the folder names.}
 
 \item{code_subfolders}{define subdirectories for code should be created.}
 
-\item{git_subfolders}{depricated, use code_subfolders instead to define subdirectories within git repository that
-should be created.}
-
-\item{path_prefix}{a prefix for the folder names.}
+\item{dvc_subfolders}{subfolders for data that should be added to dvc.}
 
 \item{global}{logical: export path strings as global variables?}
 
@@ -60,10 +56,17 @@ root directory of the project should be set.}
 
 \item{alt_env_root_folder}{alternative root directory.}
 
-\item{lut_mode}{use predefined environmental settings. In this case, only the
+\item{standard_setup}{use predefined settings. In this case, only the name of the root folder is required. See
+names(envimaR::lutInfo()) for available standards.
 name of the git repository must be supplied to the function.}
 
+\item{lut_mode}{deprecated, use standard_setup instead.}
+
 \item{create_folders}{create folders if not existing already.}
+
+\item{git_repository}{deprecated, use code_subfolders instead.}
+
+\item{git_subfolders}{depricated, use code_subfolders instead.}
 }
 \value{
 A list containing the project settings.
@@ -85,7 +88,4 @@ createEnvi(
 }
 \seealso{
 \code{\link[=alternativeEnvi]{alternativeEnvi()}}
-}
-\author{
-Christoph Reudenbach, Thomas Nauss
 }

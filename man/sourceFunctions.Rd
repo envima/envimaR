@@ -22,7 +22,4 @@ folder.
 # sourceFunctions(fcts_folder = "~/project/src/fcts")
 }
 }
-\author{
-Christoph Reudenbach, Thomas Nauss
-}
 \keyword{internal}

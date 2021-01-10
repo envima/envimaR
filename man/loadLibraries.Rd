@@ -21,7 +21,4 @@ ones.
 # loadLibraries(libs = C("link2GI"))
 }
 }
-\author{
-Christoph Reudenbach, Thomas Nauss
-}
 \keyword{internal}

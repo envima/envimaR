@@ -21,9 +21,6 @@ pckgDefaults()
 }
 
 }
-\author{
-Christoph Reudenbach, Thomas Nauss
-}
 \keyword{#}
 \keyword{Standard}
 \keyword{envimaR}

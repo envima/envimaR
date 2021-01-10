@@ -37,7 +37,4 @@ necessary.
 }
 # Create folder list and set variable names pointing to the path values
 }
-\author{
-Christoph Reudenbach, Thomas Nauss
-}
 \keyword{internal}

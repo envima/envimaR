@@ -21,7 +21,4 @@ makeGlobalVariable(names = "path_data", values = "~/data")
 }
 
 }
-\author{
-Christoph Reudenbach, Thomas Nauss
-}
 \keyword{internal}
