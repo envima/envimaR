@@ -76,7 +76,7 @@ is defined once in the main control script located at src/control.R.
 }
 \examples{
 \dontrun{
-root_folder <- tempdir()
+root_folder <- tempdir() # Mandatory, variable must be in the R environment.
 envrmt <- initEnvimaR(root_folder = root_folder, standard_setup = "envimar")
 }
 

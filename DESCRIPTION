@@ -28,4 +28,6 @@ Depends:
 Imports: 
     brew,
     data.tree,
-    usethis
+    tools,
+    usethis,
+    yaml

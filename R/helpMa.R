@@ -86,7 +86,6 @@ addGitFolders <- function(folders, git_repository = NULL, git_subfolders = NULL,
 createFolders <- function(root_folder, folders,
                           folder_names = NULL, path_prefix = "path_",
                           create_folders = TRUE) {
-
   folders <- lapply(folders, function(f) {
     file.path(root_folder, f)
   })
@@ -165,8 +164,9 @@ loadLibraries <- function(libs) {
 #' \dontrun{
 #' # sourceFunctions(fcts_folder = "~/project/src/fcts")
 #' }
-sourceFunctions <- function(fcts_folder) {
+sourceFunctions <- function(fcts_folder, setup_script) {
   fcts <- list.files(fcts_folder, full.names = TRUE, recursive = TRUE)
+  fcts <- fcts[-grep(setup_script, fcts)]
   success <- lapply(fcts, function(f) {
     try(source(f), silent = TRUE)
   })

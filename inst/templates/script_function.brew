@@ -10,7 +10,7 @@
 #'
 #'@details
 #'
-#' @name <%= gsub("^tools?|\\.R$", "", basename(path)) %>
+#'@name <%= gsub("^tools?|\\.R$", "", tools::file_path_sans_ext(basename(new_file))) %>
 #'
 #'@examples
 #' \dontrun{
@@ -21,4 +21,4 @@
 # Note: Use this template for functions.
 <% } %>
 
-function
+a <- function(){}

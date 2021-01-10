@@ -13,6 +13,7 @@ createEnvi(
   dvc_subfolders = NULL,
   global = FALSE,
   libs = NULL,
+  setup_script = "000_setup.R",
   fcts_folder = NULL,
   source_functions = !is.null(fcts_folder),
   alt_env_id = NULL,
@@ -42,6 +43,9 @@ provided, the base paths of the folders is used.}
 \item{global}{logical: export path strings as global variables?}
 
 \item{libs}{vector with the  names of libraries}
+
+\item{setup_script}{name of the setup script. This file will not be sourced from the functions folder even if
+fcts_folder is provided.}
 
 \item{fcts_folder}{path of the folder holding the functions. All files in
 this folder will be sourced.}

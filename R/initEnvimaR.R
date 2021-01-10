@@ -41,7 +41,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' root_folder <- tempdir()
+#' root_folder <- tempdir() # Mandatory, variable must be in the R environment.
 #' envrmt <- initEnvimaR(root_folder = root_folder, standard_setup = "envimar")
 #' }
 #'
@@ -115,16 +115,4 @@ initEnvimaR <- function(root_folder = ".", folders = NULL, folder_names = NULL, 
     }
   }
   return(envrmt)
-
-  #
-  #
-  #   if (git){
-  #     repo<- git2r::init(path = dir)
-  #     git2r::add(repo = repo, paste0(basename(dir),"*.Rproj"))
-  #     git2r::add(repo = repo, "scripts/control.r")
-  #     git2r::add(repo = repo, "scripts/setup_project.r")
-  #     git2r::add(repo = repo, "scripts/setup_data.r")
-  #     git2r::commit(repo = repo,message = "initial commit")
-  #
-  #   }
 }

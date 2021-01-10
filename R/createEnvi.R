@@ -12,6 +12,8 @@
 #' @param path_prefix a prefix for the folder names.
 #' @param global logical: export path strings as global variables?
 #' @param libs  vector with the  names of libraries
+#' @param setup_script name of the setup script. This file will not be sourced from the functions folder even if
+#' fcts_folder is provided.
 #' @param fcts_folder  path of the folder holding the functions. All files in
 #' this folder will be sourced.
 #' @param source_functions logical: should functions be sourced?
@@ -47,18 +49,19 @@
 #'
 createEnvi <- function(root_folder = tempdir(), folders = c("data", "data/tmp"), folder_names = NULL,
                        path_prefix = NULL, code_subfolders = NULL, dvc_subfolders = NULL,
-                       global = FALSE, libs = NULL, fcts_folder = NULL, source_functions = !is.null(fcts_folder),
-                       alt_env_id = NULL, alt_env_value = NULL, alt_env_root_folder = NULL, standard_setup = NULL,
-                       lut_mode = NULL, create_folders = TRUE,
-                       git_repository = NULL, git_subfolders = NULL){
+                       global = FALSE, libs = NULL, setup_script = "000_setup.R", fcts_folder = NULL,
+                       source_functions = !is.null(fcts_folder),
+                       alt_env_id = NULL, alt_env_value = NULL, alt_env_root_folder = NULL,
+                       standard_setup = NULL, lut_mode = NULL, create_folders = TRUE,
+                       git_repository = NULL, git_subfolders = NULL) {
 
   # Deprecated warnings
-  if (!is.null(git_subfolders)){
+  if (!is.null(git_subfolders)) {
     warning("git_subfolders is depricated, use code_subfolders instead.")
     code_subfolders <- git_subfolders
   }
 
-  if (!is.null(git_repository)){
+  if (!is.null(git_repository)) {
     warning("git_repository is depricated, use code_subfolders instead.")
     code_subfolders <- c(code_subfolders, git_repository)
   }
@@ -108,7 +111,7 @@ createEnvi <- function(root_folder = tempdir(), folders = c("data", "data/tmp"),
   loadLibraries(libs)
 
   # Source functions
-  if (source_functions) sourceFunctions(fcts_folder)
+  if (source_functions) sourceFunctions(fcts_folder, setup_script)
 
   return(folders)
 }

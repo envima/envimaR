@@ -2,7 +2,10 @@
 
 export(alternativeEnvi)
 export(createEnvi)
+export(createMeta)
 export(createScript)
+export(enviLoad)
+export(enviSave)
 export(getEnvi)
 export(initEnvimaR)
 export(lutInfo)

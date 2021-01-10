@@ -4,7 +4,7 @@
 \alias{sourceFunctions}
 \title{Source functions from standard or given directory}
 \usage{
-sourceFunctions(fcts_folder)
+sourceFunctions(fcts_folder, setup_script)
 }
 \arguments{
 \item{fcts_folder}{path of the folder holding the functions. All files in

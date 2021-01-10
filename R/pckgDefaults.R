@@ -12,8 +12,8 @@
 #' pckgDefaults()
 #' }
 #'
-
-pckgDefaults <- function() { envimar <- list(
+pckgDefaults <- function() {
+  envimar <- list(
     folders = c("doc", "doc/figures"),
     folder_names = NULL,
     init_git = TRUE,

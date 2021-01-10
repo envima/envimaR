@@ -6,14 +6,14 @@
 \usage{
 createScript(
   new_file = file.path(tempdir(), "tmp.R"),
-  template = "script_function",
+  template = c("script_function", "script_control"),
   notes = TRUE
 )
 }
 \arguments{
 \item{new_file}{name of the file to be created}
 
-\item{template}{template to be used for the new file}
+\item{template}{template to be used for the new file ("script_function", "script_control")}
 
 \item{notes}{logical: include notes from the template in the file}
 }
