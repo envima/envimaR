@@ -2,15 +2,29 @@
 % Please edit documentation in R/createEnvi.R
 \name{createEnvi}
 \alias{createEnvi}
-\title{Define and create a project environment}
+\title{Setup project folder structure}
 \usage{
-createEnvi(root_folder = tempdir(), folders = c("data", "data/tmp"),
-  folder_names = NULL, git_repository = NULL,
-  git_subfolders = c("src", "doc"), path_prefix = "path_",
-  global = FALSE, libs = NULL, fcts_folder = NULL,
-  source_functions = !is.null(fcts_folder), alt_env_id = NULL,
-  alt_env_value = NULL, alt_env_root_folder = NULL, lut_mode = FALSE,
-  create_folders = TRUE)
+createEnvi(
+  root_folder = tempdir(),
+  folders = c("data", "data/tmp"),
+  folder_names = NULL,
+  path_prefix = NULL,
+  code_subfolders = NULL,
+  dvc_subfolders = NULL,
+  global = FALSE,
+  libs = NULL,
+  setup_script = "000_setup.R",
+  fcts_folder = NULL,
+  source_functions = !is.null(fcts_folder),
+  alt_env_id = NULL,
+  alt_env_value = NULL,
+  alt_env_root_folder = NULL,
+  standard_setup = NULL,
+  lut_mode = NULL,
+  create_folders = TRUE,
+  git_repository = NULL,
+  git_subfolders = NULL
+)
 }
 \arguments{
 \item{root_folder}{root directory of the project.}
@@ -20,18 +34,18 @@ createEnvi(root_folder = tempdir(), folders = c("data", "data/tmp"),
 \item{folder_names}{names of the variables that point to subfolders. If not
 provided, the base paths of the folders is used.}
 
-\item{git_repository}{name of the project's git repository. Will be
-added to the folders and subfolders defined in default "lut" or supplied by
-user will be created.}
-
-\item{git_subfolders}{subdirectories within git repository that should be
-created.}
-
 \item{path_prefix}{a prefix for the folder names.}
+
+\item{code_subfolders}{define subdirectories for code should be created.}
+
+\item{dvc_subfolders}{subfolders for data that should be added to dvc.}
 
 \item{global}{logical: export path strings as global variables?}
 
 \item{libs}{vector with the  names of libraries}
+
+\item{setup_script}{name of the setup script. This file will not be sourced from the functions folder even if
+fcts_folder is provided.}
 
 \item{fcts_folder}{path of the folder holding the functions. All files in
 this folder will be sourced.}
@@ -46,10 +60,17 @@ root directory of the project should be set.}
 
 \item{alt_env_root_folder}{alternative root directory.}
 
-\item{lut_mode}{use predefined environmental settings. In this case, only the
+\item{standard_setup}{use predefined settings. In this case, only the name of the root folder is required. See
+names(envimaR::lutInfo()) for available standards.
 name of the git repository must be supplied to the function.}
 
+\item{lut_mode}{deprecated, use standard_setup instead.}
+
 \item{create_folders}{create folders if not existing already.}
+
+\item{git_repository}{deprecated, use code_subfolders instead.}
+
+\item{git_subfolders}{depricated, use code_subfolders instead.}
 }
 \value{
 A list containing the project settings.
@@ -60,15 +81,15 @@ libraries, and sets other project relevant parameters.
 }
 \examples{
 \dontrun{
-createEnvi(root_folder = "~/edu", folders = c("data/", "data/tmp/"),
-libs = c("link2GI"),
-alt_env_id = "COMPUTERNAME", alt_env_value = "PCRZP",
-alt_env_root_folder = "D:\\\\BEN\\\\edu")
+createEnvi(
+  root_folder = "~/edu", folders = c("data/", "data/tmp/"),
+  libs = c("link2GI"),
+  alt_env_id = "COMPUTERNAME", alt_env_value = "PCRZP",
+  alt_env_root_folder = "D:\\\\BEN\\\\edu"
+)
 }
+
 }
 \seealso{
 \code{\link[=alternativeEnvi]{alternativeEnvi()}}
-}
-\author{
-Christoph Reudenbach, Thomas Nauss
 }

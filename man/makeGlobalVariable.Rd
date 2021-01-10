@@ -18,10 +18,7 @@ Generates a variable with a certain value in the R environment.
 \dontrun{
 # creates the global variable \\code{path_data} with the value \\code{~/data}
 makeGlobalVariable(names = "path_data", values = "~/data")
+}
 
-}
-}
-\author{
-Christoph Reudenbach, Thomas Nauss
 }
 \keyword{internal}

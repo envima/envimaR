@@ -4,8 +4,12 @@
 \alias{alternativeEnvi}
 \title{Define basic or alternative environment depending on actual system}
 \usage{
-alternativeEnvi(root_folder = tempdir(), alt_env_id = NULL,
-  alt_env_value = NULL, alt_env_root_folder = NULL)
+alternativeEnvi(
+  root_folder = tempdir(),
+  alt_env_id = NULL,
+  alt_env_value = NULL,
+  alt_env_root_folder = NULL
+)
 }
 \arguments{
 \item{root_folder}{root directory of the project.}
@@ -27,13 +31,13 @@ actual system environment.
 }
 \examples{
 \dontrun{
-alternativeEnvi(root_folder = tempdir(), alt_env_id = "COMPUTERNAME",
-alt_env_value = "PCRZP", alt_env_root_folder = "D:\\\\BEN\\\\edu")
+alternativeEnvi(
+  root_folder = tempdir(), alt_env_id = "COMPUTERNAME",
+  alt_env_value = "PCRZP", alt_env_root_folder = "D:\\\\BEN\\\\edu"
+)
 }
+
 }
 \seealso{
 \code{\link[=createEnvi]{createEnvi()}}
-}
-\author{
-Christoph Reudenbach, Thomas Nauss
 }

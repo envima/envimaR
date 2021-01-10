@@ -4,8 +4,12 @@
 \alias{addGitFolders}
 \title{Extent folder list by git repository}
 \usage{
-addGitFolders(folders, git_repository = NULL, git_subfolders = NULL,
-  lut_mode = FALSE)
+addGitFolders(
+  folders,
+  git_repository = NULL,
+  git_subfolders = NULL,
+  lut_mode = FALSE
+)
 }
 \arguments{
 \item{folders}{list of subfolders within the project directory.}
@@ -26,12 +30,8 @@ according to default values.
 }
 \examples{
 \dontrun{
-
 addGitFolders(folders = c("data", "data/tmp"), git_repository = "myproject")
+}
 
-}
-}
-\author{
-Christoph Reudenbach, Thomas Nauss
 }
 \keyword{internal}

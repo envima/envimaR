@@ -15,26 +15,25 @@
 #' @name alternativeEnvi
 #' @export alternativeEnvi
 #'
-#' @author Christoph Reudenbach, Thomas Nauss
-#'
 #' @seealso [createEnvi()]
 #'
 #' @examples
 #' \dontrun{
-#' alternativeEnvi(root_folder = tempdir(), alt_env_id = "COMPUTERNAME",
-#' alt_env_value = "PCRZP", alt_env_root_folder = "D:\\BEN\\edu")
-#'}
+#' alternativeEnvi(
+#'   root_folder = tempdir(), alt_env_id = "COMPUTERNAME",
+#'   alt_env_value = "PCRZP", alt_env_root_folder = "D:\\BEN\\edu"
+#' )
+#' }
+#'
+alternativeEnvi <- function(root_folder = tempdir(),
+                            alt_env_id = NULL,
+                            alt_env_value = NULL,
+                            alt_env_root_folder = NULL) {
+  root_folder <- gsub("\\\\", "/", path.expand(root_folder))
 
-alternativeEnvi = function(root_folder = tempdir(),
-                      alt_env_id = NULL,
-                      alt_env_value = NULL,
-                      alt_env_root_folder = NULL){
-
-  root_folder = gsub("\\\\", "/", path.expand(root_folder))
-
-  if(!is.null(alt_env_id)){
-    if(grepl(alt_env_value, Sys.getenv()[alt_env_id])){
-      root_folder = alt_env_root_folder
+  if (!is.null(alt_env_id)) {
+    if (grepl(alt_env_value, Sys.getenv()[alt_env_id])) {
+      root_folder <- alt_env_root_folder
     }
   }
 

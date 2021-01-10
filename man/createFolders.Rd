@@ -4,8 +4,13 @@
 \alias{createFolders}
 \title{Compile folder list and create folders}
 \usage{
-createFolders(root_folder, folders, folder_names = NULL,
-  path_prefix = "path_", create_folders = TRUE)
+createFolders(
+  root_folder,
+  folders,
+  folder_names = NULL,
+  path_prefix = "path_",
+  create_folders = TRUE
+)
 }
 \arguments{
 \item{root_folder}{root directory of the project.}
@@ -30,8 +35,6 @@ necessary.
 \dontrun{
 # createFolders(root_folder = "~/edu", folders = c("data/", "data/tmp/"))
 }
-}
-\author{
-Christoph Reudenbach, Thomas Nauss
+# Create folder list and set variable names pointing to the path values
 }
 \keyword{internal}

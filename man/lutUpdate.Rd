@@ -17,8 +17,8 @@ Run it after updating \code{\link[=pckgDefaults]{pckgDefaults()}}.
 None
 }
 \examples{
-None
 \dontrun{
 lutInfo()
 }
+
 }

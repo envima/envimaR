@@ -8,21 +8,18 @@
 #' @name makeGlobalVariable
 #' @keywords internal
 #'
-#' @author Christoph Reudenbach, Thomas Nauss
-#'
-#'@examples
+#' @examples
 #' \dontrun{
-#' # creates the global variable \code{path_data} with the value \code{~/data}
+#' # creates the global variable \\code{path_data} with the value \\code{~/data}
 #' makeGlobalVariable(names = "path_data", values = "~/data")
-#'
 #' }
+#'
+makeGlobalVariable <- function(names, values) {
+  if (!exists("enivmaR")) enivmaR <- new.env(parent = globalenv())
 
-makeGlobalVariable = function(names, values) {
-  if (!exists("enivmaR")) enivmaR = new.env(parent=globalenv())
-
-  for(i in seq(length(names))){
+  for (i in seq(length(names))) {
     if (exists(names[i], envir = enivmaR)) {
-      warning(paste("The variable", names[i],"already exist in .GlobalEnv"))
+      warning(paste("The variable", names[i], "already exist in .GlobalEnv"))
     } else {
       assign(names[i], values[i], envir = enivmaR, inherits = TRUE)
     }
@@ -49,21 +46,17 @@ makeGlobalVariable = function(names, values) {
 #' @name addGitFolders
 #' @keywords internal
 #'
-#' @author Christoph Reudenbach, Thomas Nauss
-#'
-#'@examples
+#' @examples
 #' \dontrun{
-#'
 #' addGitFolders(folders = c("data", "data/tmp"), git_repository = "myproject")
-#'
 #' }
-
-addGitFolders = function(folders, git_repository = NULL, git_subfolders = NULL,
-                         lut_mode = FALSE) {
-  if(is.null(git_subfolders)){
-    folders = c(folders, git_repository)
+#'
+addGitFolders <- function(folders, git_repository = NULL, git_subfolders = NULL,
+                          lut_mode = FALSE) {
+  if (is.null(git_subfolders)) {
+    folders <- c(folders, git_repository)
   } else {
-    folders = c(folders, file.path(git_repository, git_subfolders))
+    folders <- c(folders, file.path(git_repository, git_subfolders))
   }
 }
 
@@ -85,41 +78,39 @@ addGitFolders = function(folders, git_repository = NULL, git_subfolders = NULL,
 #'
 #' @keywords internal
 #'
-#' @author Christoph Reudenbach, Thomas Nauss
-#'
-#'@examples
+#' @examples
 #' \dontrun{
 #' # createFolders(root_folder = "~/edu", folders = c("data/", "data/tmp/"))
 #' }
-# Create folder list and set variable names pointing to the path values
-createFolders = function(root_folder, folders,
-                         folder_names = NULL, path_prefix = "path_",
-                         create_folders = TRUE){
-
-  folders = lapply(folders, function(f){
+#' # Create folder list and set variable names pointing to the path values
+createFolders <- function(root_folder, folders,
+                          folder_names = NULL, path_prefix = "path_",
+                          create_folders = TRUE) {
+  folders <- lapply(folders, function(f) {
     file.path(root_folder, f)
   })
+  folders <- folders[!duplicated(folders)]
 
-  if(is.null(folder_names)){
-    names(folders) = basename(unlist(folders))
-    tmplt = unlist(folders)
+  if (is.null(folder_names)) {
+    names(folders) <- basename(unlist(folders))
+    tmplt <- unlist(folders)
 
-    while(any(duplicated(names(folders)))){
-      tmplt = dirname(tmplt)
-      dplcts = which(duplicated(names(folders), fromLast = FALSE) |
-                       duplicated(names(folders), fromLast = TRUE))
-      names(folders)[dplcts] =
+    while (any(duplicated(names(folders)))) {
+      tmplt <- dirname(tmplt)
+      dplcts <- which(duplicated(names(folders), fromLast = FALSE) |
+        duplicated(names(folders), fromLast = TRUE))
+      names(folders)[dplcts] <-
         paste(basename(tmplt)[dplcts], names(folders[dplcts]), sep = "_")
     }
   } else {
-    names(folders) = folder_names
+    names(folders) <- folder_names
   }
 
-  if(!is.null(path_prefix)) names(folders) = paste0(path_prefix, names(folders))
+  if (!is.null(path_prefix)) names(folders) <- paste0(path_prefix, names(folders))
 
   # Check paths for existance and create if necessary
-  for(f in folders){
-    if(!file.exists(f)) dir.create(f, recursive = TRUE)
+  for (f in folders) {
+    if (!file.exists(f)) dir.create(f, recursive = TRUE)
   }
 
   return(folders)
@@ -139,20 +130,18 @@ createFolders = function(root_folder, folders,
 #'
 #' @keywords internal
 #'
-#' @author Christoph Reudenbach, Thomas Nauss
-#'
-#'@examples
+#' @examples
 #' \dontrun{
 #' # loadLibraries(libs = C("link2GI"))
 #' }
-loadLibraries = function(libs){
-  success = lapply(libs, function(l){
-    if(!l %in% utils::installed.packages()){
+loadLibraries <- function(libs) {
+  success <- lapply(libs, function(l) {
+    if (!l %in% utils::installed.packages()) {
       utils::install.packages(l)
     }
     require(l, character.only = TRUE)
   })
-  names(success) = libs
+  names(success) <- libs
   return(success)
 }
 
@@ -171,18 +160,17 @@ loadLibraries = function(libs){
 #'
 #' @keywords internal
 #'
-#' @author Christoph Reudenbach, Thomas Nauss
-#'
-#'@examples
+#' @examples
 #' \dontrun{
 #' # sourceFunctions(fcts_folder = "~/project/src/fcts")
 #' }
-sourceFunctions = function(fcts_folder){
-  fcts = list.files(fcts_folder, full.names = TRUE)
-  success = lapply(fcts, function(f){
+sourceFunctions <- function(fcts_folder, setup_script) {
+  fcts <- list.files(fcts_folder, full.names = TRUE, recursive = TRUE)
+  fcts <- fcts[-grep(setup_script, fcts)]
+  success <- lapply(fcts, function(f) {
     try(source(f), silent = TRUE)
   })
-  names(success) = fcts
+  names(success) <- fcts
   return(success)
 }
 
@@ -201,13 +189,13 @@ sourceFunctions = function(fcts_folder){
 #'
 #' @details None
 #'
-#' @examples None
+#' @examples
 #' \dontrun{
 #' lutInfo()
 #' }
-
-lutInfo <- function(){
-  return(dflt)
+#'
+lutInfo <- function() {
+  return(setup_dflt)
 }
 
 
@@ -225,12 +213,11 @@ lutInfo <- function(){
 #'
 #' @details None
 #'
-#' @examples None
+#' @examples
 #' \dontrun{
 #' lutInfo()
 #' }
-
-lutUpdate <- function(){
+#'
+lutUpdate <- function() {
   pckgDefaults()
 }
-
