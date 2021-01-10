@@ -1,4 +1,4 @@
-#' Define and create a project environment
+#' Setup project folder structure
 #'
 #' @description Defines folder structures and creates them if necessary, loads
 #' libraries, and sets other project relevant parameters.
@@ -10,8 +10,9 @@
 #' @param git_repository name of the project's git repository. Will be
 #' added to the folders and subfolders defined in default "lut" or supplied by
 #' user will be created.
-#' @param git_subfolders subdirectories within git repository that should be
-#' created.
+#' @param code_subfolders define subdirectories for code should be created.
+#' @param git_subfolders depricated, use code_subfolders instead to define subdirectories within git repository that
+#' should be created.
 #' @param path_prefix a prefix for the folder names.
 #' @param global logical: export path strings as global variables?
 #' @param libs  vector with the  names of libraries
@@ -48,19 +49,27 @@
 #'
 createEnvi <- function(root_folder = tempdir(), folders = c("data", "data/tmp"),
                        folder_names = NULL, git_repository = NULL,
-                       git_subfolders = c("src", "doc"),
-                       path_prefix = "path_", global = FALSE,
+                       code_subfolders = NULL, dvc_subfolders = NULL,
+                       git_subfolders = NULL,
+                       path_prefix = NULL, global = FALSE,
                        libs = NULL,
                        fcts_folder = NULL, source_functions = !is.null(fcts_folder),
                        alt_env_id = NULL,
                        alt_env_value = NULL,
                        alt_env_root_folder = NULL,
-                       lut_mode = FALSE,
+                       lut_mode = NULL,
                        create_folders = TRUE) {
-  if (lut_mode) {
-    dftl <- envimaR:::dflt
-    for (i in seq(length(dftl))) {
-      assign(names(dftl[i]), dftl[[i]])
+  if (!is.null(git_subfolders)) waring("git_subfolders is depricated, use code_subfolders instead.")
+
+  if (isTRUE(lut_mode)) {
+    dflt <- setup_dflt[["dflt_createEnvi"]]
+    for (i in seq(length(dflt))) {
+      assign(names(dflt[i]), dflt[[i]])
+    }
+  } else if (!is.null(lut_mode)) {
+    dflt <- setup_dflt[[lut_mode]]
+    for (i in seq(length(dflt))) {
+      assign(names(dflt[i]), dflt[[i]])
     }
   }
 
@@ -73,12 +82,18 @@ createEnvi <- function(root_folder = tempdir(), folders = c("data", "data/tmp"),
   )
 
   # Compile and create folders if necessary
-  if (!is.null(git_repository)) {
+  if (!is.null(git_repository) || !is.null(code_subfolders) || !is.null(git_subfolders)) {
+    if (is.null(code_subfolders)) code_subfolders <- git_subfolders
     folders <- addGitFolders(
       folders = folders, git_repository = git_repository,
-      git_subfolders = git_subfolders, lut_mode = lut_mode
+      git_subfolders = code_subfolders, lut_mode = lut_mode
     )
   }
+
+  if (!is.null(dvc_subfolders)) {
+    folders <- c(folders, dvc_subfolders)
+  }
+
   folders <- createFolders(root_folder, folders,
     folder_names = folder_names, path_prefix = path_prefix,
     create_folders = create_folders

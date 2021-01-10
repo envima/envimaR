@@ -2,4 +2,7 @@ library(testthat)
 library(envimaR)
 
 # test_check("envimaR")
-test_check("test_createEnvi")
+testthat::test_file("./tests/testthat/initEnvimaR.R")
+
+
+path <- testthat_example("initEnvimaR")

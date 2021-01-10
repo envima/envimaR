@@ -2,5 +2,9 @@
 
 export(alternativeEnvi)
 export(createEnvi)
+export(createScript)
+export(getEnvi)
+export(initEnvimaR)
 export(lutInfo)
 export(lutUpdate)
+import(brew)

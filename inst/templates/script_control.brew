@@ -1,0 +1,20 @@
+#' Main control script
+#'
+#' @description Use this script for controlling the processing.
+#'
+#' @author [name], [email@com]
+#'
+
+library(envimaR)
+if (Sys.info()[["nodename"]] == "MyComputer") {
+  root_folder = "<%= gsub("\\\\", "/", normalizePath(root_folder))%>"
+} else {
+  root_folder = "<%= gsub("\\\\", "/", normalizePath(root_folder))%>"
+}
+source(file.path(root_folder, "src/functions/000_setup.R"))
+
+<% if (notes) { -%>
+# Note: For small projects, all code can go to this file except the main project setup script.
+# For large projects, this file should only call other sub-control files and/or functions.
+# To add a script using envimaR see ?envimaR::addScript.
+<% } %>

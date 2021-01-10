@@ -205,7 +205,7 @@ sourceFunctions <- function(fcts_folder) {
 #' }
 #'
 lutInfo <- function() {
-  return(dflt)
+  return(setup_dflt)
 }
 
 
@@ -231,4 +231,29 @@ lutInfo <- function() {
 #'
 lutUpdate <- function() {
   pckgDefaults()
+}
+
+
+
+
+#' Create files or scripts from templates
+#'
+#' @description Create files or scripts from brew templates supplied with the package.
+#'
+#' @return NULL
+#'
+#' @name createScript
+#' @export createScript
+#'
+#' @details None
+#'
+#' @examples
+#' None
+#' \dontrun{
+#' createScript()
+#' }
+#'
+createScript <- function(new_file = file.path(tempdir(), "tmp.R"), template = "script_function", notes = TRUE) {
+  template_path <- system.file(sprintf("templates/%s.brew", template), package = "envimaR")
+  brew::brew(template_path, new_file)
 }

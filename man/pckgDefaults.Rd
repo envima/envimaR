@@ -17,10 +17,16 @@ After changing something, run \code{\link[=lutUpdate]{lutUpdate()}} to update th
 }
 \examples{
 \dontrun{
-lutUpdate()
+pckgDefaults()
 }
+
 }
 \author{
 Christoph Reudenbach, Thomas Nauss
 }
+\keyword{#}
+\keyword{Standard}
+\keyword{envimaR}
+\keyword{for}
 \keyword{internal}
+\keyword{setup}
