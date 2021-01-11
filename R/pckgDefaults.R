@@ -28,7 +28,7 @@ pckgDefaults <- function() {
     alt_env_root_folder = "D:\\BEN\\plygrnd",
     lut_mode = FALSE,
     create_folders = TRUE,
-    git_repository = "." # Historic reasons, remove once var git_repository in createEnvi is depricated.
+    git_repository = "." # Historic reasons, remove once var git_repository in createEnvi is deprecated.
   )
 
   envimar_no_dvc <- envimar

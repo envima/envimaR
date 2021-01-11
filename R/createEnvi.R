@@ -27,7 +27,7 @@
 #' name of the git repository must be supplied to the function.
 #' @param create_folders create folders if not existing already.
 #' @param git_repository deprecated, use code_subfolders instead.
-#' @param git_subfolders depricated, use code_subfolders instead.
+#' @param git_subfolders deprecated, use code_subfolders instead.
 #' @param lut_mode deprecated, use standard_setup instead.
 #'
 #' @return A list containing the project settings.
