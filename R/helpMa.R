@@ -166,7 +166,7 @@ loadLibraries <- function(libs) {
 #' }
 sourceFunctions <- function(fcts_folder, setup_script) {
   fcts <- list.files(fcts_folder, full.names = TRUE, recursive = TRUE)
-  fcts <- fcts[-grep(setup_script, fcts)]
+  if (grepl(setup_script, fcts))  fcts <- fcts[-grep(pattern = setup_script, x = fcts)]
   success <- lapply(fcts, function(f) {
     try(source(f), silent = TRUE)
   })

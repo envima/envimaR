@@ -57,16 +57,16 @@ createEnvi <- function(root_folder = tempdir(), folders = c("data", "data/tmp"),
 
   # Deprecated warnings
   if (!is.null(git_subfolders)) {
-    warning("git_subfolders is depricated, use code_subfolders instead.")
+    warning("git_subfolders is deprecated, use code_subfolders instead.")
     code_subfolders <- git_subfolders
   }
 
   if (!is.null(git_repository)) {
-    warning("git_repository is depricated, use code_subfolders instead.")
+    warning("git_repository is deprecated, use code_subfolders instead.")
     code_subfolders <- c(code_subfolders, git_repository)
   }
 
-  if (!is.null(lut_mode)) warning("lut_mode is depricated, use standard_setup instead.")
+  if (!is.null(lut_mode)) warning("lut_mode is deprecated, use standard_setup instead.")
 
   if (isTRUE(lut_mode)) {
     dflt <- setup_dflt[["dflt_createEnvi"]]
