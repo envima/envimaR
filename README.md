@@ -4,7 +4,7 @@ Environmental Informatics Lab @ Marburg University
 # envimaR
 Helpers to set up and manage analysis environments and enable reproducible research.
 
-# Use case for setting up a project
+## Use case for setting up a project
 
 To set up an RStudio project, folder structures for data analysis and initialize a [Git](https://git-scm.com/) and [dvc](https://dvc.org/) repository, you can use the template "envimar". Other templates for initialization without dvc (envimar_no_dvc) and no Git/dvc (envimar_no_git_dvc) are also available. For other options, define the input manualy or create another template using [pckgDefaults.R](https://github.com/envima/envimaR/blob/master/R/pckgDefaults.R).
 
@@ -19,7 +19,7 @@ initEnvimaR(root_folder = root_folder, standard_setup = "envimar")
 
 ```
 
-# Use 000_settings.R for mastering the project environment
+## Use 000_settings.R for mastering the project environment
 
 Once a project environment is initialized, two scripts are created:
 
