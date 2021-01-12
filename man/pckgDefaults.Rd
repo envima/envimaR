@@ -2,28 +2,27 @@
 % Please edit documentation in R/pckgDefaults.R
 \name{pckgDefaults}
 \alias{pckgDefaults}
-\title{Create look-up table data for defining environment defaults}
+\title{Define working environment default settings}
 \usage{
-pckgDefaults()
+pckgDefaults(new_envrmt_list = NULL, new_envrmt_list_name = NULL)
+}
+\arguments{
+\item{new_envrmt_list}{containing a list of arbitrary folders to be generated}
+
+\item{new_envrmt_list_name}{name of this list}
 }
 \value{
-A list containing the default project settings.
+A list containing the default project settings
 }
 \description{
-Create look-up table data for defining environment defaults
+Define working environment default settings
 }
 \details{
-After changing something, run \code{\link[=lutUpdate]{lutUpdate()}} to update the LUT.
+After adding new project settings run \code{\link[=pckgDefaults]{pckgDefaults()}} to update and savew the default settings. For compatibility reasons you may also run \code{\link[=lutUpdate]{lutUpdate()}}.
 }
 \examples{
 \dontrun{
+# Standard setup for envimaR
 pckgDefaults()
 }
-
 }
-\keyword{#}
-\keyword{Standard}
-\keyword{envimaR}
-\keyword{for}
-\keyword{internal}
-\keyword{setup}

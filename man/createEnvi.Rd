@@ -70,7 +70,7 @@ name of the git repository must be supplied to the function.}
 
 \item{git_repository}{deprecated, use code_subfolders instead.}
 
-\item{git_subfolders}{depricated, use code_subfolders instead.}
+\item{git_subfolders}{deprecated, use code_subfolders instead.}
 }
 \value{
 A list containing the project settings.

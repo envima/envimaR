@@ -6,7 +6,7 @@ Helpers to set up and manage analysis environments and enable reproducible resea
 
 ## Use case for setting up a project
 
-To set up an RStudio project, folder structures for data analysis and initialize a [Git](https://git-scm.com/) and [dvc](https://dvc.org/) repository, you can use the template "envimar". Other templates for initialization without dvc (envimar_no_dvc) and no Git/dvc (envimar_no_git_dvc) are also available. For other options, define the input manualy or create another template using [pckgDefaults.R](https://github.com/envima/envimaR/blob/master/R/pckgDefaults.R).
+To set up an RStudio project, folder structures for data analysis and initialize a [Git](https://git-scm.com/) and [dvc](https://dvc.org/) repository, you can use the template "envimar". Other templates for initialization without dvc (envimar_no_dvc) and no Git/dvc (envimar_no_git_dvc) are also available. For other options, define the input manually or create another template using [pckgDefaults.R](https://github.com/envima/envimaR/blob/master/R/pckgDefaults.R).
 
 ```R
 # Install envimaR
@@ -23,8 +23,8 @@ initEnvimaR(root_folder = root_folder, standard_setup = "envimar")
 
 Once a project environment is initialized, two scripts are created:
 
-* The `src/main.R` script is the basis of the project. It loads the project settings in the beginning. Use this script to control the programme flow. Use sub-control scripts and functions for your tasks to keep the control script clean and understandable and put all functions inside the `src/functions` folder (you can use subfolders, if you like).
-* The `src/functions/000_setup.R` script defines the environment. It is source at the beginning of the main.R script and provides two variables: `envrmt` and `meta`. `envrmt` is a list of all folders available in the project. The folders can be accessed by their baselevel name, e.g. `/src/functions` is accessible by `envrmt$functions`. `meta` is a list which can be used to collect the metadata of the project. If you want to save it, use `yaml::write_yaml(meta, filepath)`. It is a good idea to save some metadata along with each critical output file (e.g. `my_output.rd`s and `my_output.yaml`). If you want, you can use the functions `enviSave()` and `enviLoad()` for this.
+* The `src/main.R` script is the basis of the project. It loads the project settings in the beginning. Use this script to control the program flow. Use sub-control scripts and functions for your tasks to keep the control script clean and understandable and put all functions inside the `src/functions` folder (you can use subfolders, if you like).
+* The `src/functions/000_setup.R` script defines the environment. It is always sourced at the beginning of the `main.R` script and provides two variables: `envrmt` and `meta`. The variable `envrmt` provides a list of all folders available in the project. The folders can be accessed by their baselevel name, e.g. `/src/functions` is accessible by `envrmt$functions`.The  `meta` is a list which can be used to collect the metadata of the project. If you want to save it, use `yaml::write_yaml(meta, filepath)`. It is a good idea to save some metadata along with each critical output file (e.g. `my_output.rd`s and `my_output.yaml`). If you want, you can use the functions `enviSave()` and `enviLoad()` for this.
 
 This is what the `000_setup.R` script looks like:
 

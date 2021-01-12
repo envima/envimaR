@@ -201,7 +201,7 @@ lutInfo <- function() {
 
 
 
-#' Update values of default environment to internal look-up table
+#' Update values of default environment to internal look-up table (deprecated)
 #'
 #' @description Update values of default environment to internal look-up table.
 #' Run it after updating [pckgDefaults()].

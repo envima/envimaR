@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpMa.R
 \name{lutUpdate}
 \alias{lutUpdate}
-\title{Update values of default environment to internal look-up table}
+\title{Update values of default environment to internal look-up table (deprecated)}
 \usage{
 lutUpdate()
 }
