@@ -17,7 +17,7 @@
 
 pckgDefaults <- function(new_envrmt_list=NULL,new_envrmt_list_name=NULL) {
   envimar <- list(
-    folders = c("doc", "doc/figures","tmp"),
+    folders = c("docs", "docs/figures","tmp"),
     folder_names = NULL,
     init_git = TRUE,
     code_subfolders = c("src", "src/functions"),
@@ -41,8 +41,8 @@ pckgDefaults <- function(new_envrmt_list=NULL,new_envrmt_list_name=NULL) {
 
   # First version of EnvimaR
   dflt_createEnvi <- list(
-    folders = c("data", "data/tmp", "doc"),
-    code_subfolders = c("src", "doc", "fcts"),
+    folders = c("data", "data/tmp", "docs"),
+    code_subfolders = c("src", "docs", "fcts"),
     path_prefix = "path_",
     global = FALSE,
     libs = NULL,
