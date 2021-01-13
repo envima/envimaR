@@ -1,0 +1,20 @@
+Binding: initEnvimaR
+Title: Project structure with envimaR
+
+Parameter: init_git
+Widget: CheckboxInput
+Label: Init git
+Default: on
+Position: left
+
+Parameter: init_dvc
+Widget: CheckboxInput
+Label: Init dvc
+Default: off
+Position: right
+
+Parameter: standard_setup
+Widget: SelectInput
+Label: Select Options
+Fields: envimar, envimar_no_dvc, envimar_no_git_dvc
+
