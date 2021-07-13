@@ -30,4 +30,5 @@ Imports:
     data.tree,
     tools,
     usethis,
-    yaml
+    yaml,
+    rprojroot

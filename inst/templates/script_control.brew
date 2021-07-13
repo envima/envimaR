@@ -6,11 +6,9 @@
 #'
 
 library(envimaR)
-if (Sys.info()[["nodename"]] == "MyComputer") {
-  root_folder = "<%= gsub("\\\\", "/", normalizePath(root_folder))%>"
-} else {
-  root_folder = "<%= gsub("\\\\", "/", normalizePath(root_folder))%>"
-}
+library(rprojroot)
+root_folder = find_rstudio_root_file()
+
 source(file.path(root_folder, "src/functions/000_setup.R"))
 
 <% if (notes) { -%>

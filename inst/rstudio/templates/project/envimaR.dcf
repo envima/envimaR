@@ -16,5 +16,5 @@ Position: right
 Parameter: standard_setup
 Widget: SelectInput
 Label: Select Options
-Fields: envimar, envimar_no_dvc, envimar_no_git_dvc
+Fields: envimar_no_dvc, envimar,  envimar_no_git_dvc
 
